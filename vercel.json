@@ -1,54 +1,110 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "app/**", "use": "@vercel/node" },
-    { "src": "agent-sdk/**", "use": "@vercel/node" },
-    { "src": "agent-action/**", "use": "@vercel/node" },
-    { "src": "agent-adk/**", "use": "@vercel/node" },
-    { "src": "agent-agentic-rag/**", "use": "@vercel/node" },
-    { "src": "agent-ai-researcher/**", "use": "@vercel/node" },
-    { "src": "agent-analytics/**", "use": "@vercel/node" },
-    { "src": "agent-anthropic/**", "use": "@vercel/node" },
-    { "src": "agent-anthropic-chat/**", "use": "@vercel/node" },
-    { "src": "agent-assemblyai/**", "use": "@vercel/node" },
-    { "src": "agent-browser/**", "use": "@vercel/node" },
-    { "src": "agent-claude-35/**", "use": "@vercel/node" },
-    { "src": "agent-claude-sdk/**", "use": "@vercel/node" },
-    { "src": "agent-computer/**", "use": "@vercel/node" },
-    { "src": "agent-crewai/**", "use": "@vercel/node" },
-    { "src": "agent-deep-research/**", "use": "@vercel/node" },
-    { "src": "agent-deepagents/**", "use": "@vercel/node" },
-    { "src": "agent-fastapi/**", "use": "@vercel/node" },
-    { "src": "agent-langgraph/**", "use": "@vercel/node" },
-    { "src": "agent-langgraph-ngui/**", "use": "@vercel/node" },
-    { "src": "agent-langgraph-nextjs/**", "use": "@vercel/node" },
-    { "src": "agent-langsmith/**", "use": "@vercel/node" },
-    { "src": "agent-llama-index/**", "use": "@vercel/node" },
-    { "src": "agent-llamaindex/**", "use": "@vercel/node" },
-    { "src": "agent-mastra/**", "use": "@vercel/node" },
-    { "src": "agent-matrix/**", "use": "@vercel/node" },
-    { "src": "agent-metta/**", "use": "@vercel/node" },
-    { "src": "agent-microsoft/**", "use": "@vercel/node" },
-    { "src": "agent-mistral/**", "use": "@vercel/node" },
-    { "src": "agent-mcp/**", "use": "@vercel/node" },
-    { "src": "agent-openai/**", "use": "@vercel/node" },
-    { "src": "agent-openai-assistant/**", "use": "@vercel/node" },
-    { "src": "agent-opendevin/**", "use": "@vercel/node" },
-    { "src": "agent-openinterpreter/**", "use": "@vercel/node" },
-    { "src": "agent-phidata/**", "use": "@vercel/node" },
-    { "src": "agent-python/**", "use": "@vercel/node" },
-    { "src": "agent-qdrant/**", "use": "@vercel/node" },
-    { "src": "agent-react-native/**", "use": "@vercel/node" },
-    { "src": "agent-react-scan/**", "use": "@vercel/node" },
-    { "src": "agent-redis/**", "use": "@vercel/node" },
-    { "src": "agent-sentry/**", "use": "@vercel/node" },
-    { "src": "agent-supabase/**", "use": "@vercel/node" },
-    { "src": "agent-tools/**", "use": "@vercel/node" },
-    { "src": "agent-ts/**", "use": "@vercel/node" },
-    { "src": "agent-v0/**", "use": "@vercel/node" },
-    { "src": "agent-vercel-ai/**", "use": "@vercel/node" },
-    { "src": "desktop/**", "use": "@vercel/node" },
-    { "src": "server/**", "use": "@vercel/node" },
-    { "src": "supervisor/**", "use": "@vercel/node" }
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "app": {
+      "root": ".",
+      "runtime": "container"
+    },
+    "agent-adk": {
+      "root": "agent-adk",
+      "framework": "fastapi"
+    },
+    "agent-ag2": {
+      "root": "agent-ag2",
+      "framework": "fastapi"
+    },
+    "agent-agno": {
+      "root": "agent-agno",
+      "framework": "fastapi"
+    },
+    "agent-bot": {
+      "root": "agent-bot",
+      "runtime": "container"
+    },
+    "agent-claude-sdk": {
+      "root": "agent-claude-sdk",
+      "framework": "fastapi"
+    },
+    "agent-computer": {
+      "root": "agent-computer",
+      "runtime": "container"
+    },
+    "agent-crewai": {
+      "root": "agent-crewai",
+      "runtime": "python"
+    },
+    "agent-langgraph": {
+      "root": "agent-langgraph",
+      "runtime": "container"
+    },
+    "agent-langgraph-agui": {
+      "root": "agent-langgraph-agui",
+      "framework": "fastapi"
+    },
+    "agent-langroid": {
+      "root": "agent-langroid",
+      "framework": "fastapi"
+    },
+    "agent-llamaindex": {
+      "root": "agent-llamaindex",
+      "framework": "fastapi"
+    },
+    "agent-mastra": {
+      "root": "agent-mastra",
+      "framework": "mastra"
+    },
+    "agent-microsoft": {
+      "root": "agent-microsoft",
+      "framework": "fastapi"
+    },
+    "agent-pydantic-ai": {
+      "root": "agent-pydantic-ai",
+      "framework": "fastapi"
+    },
+    "agent-strands": {
+      "root": "agent-strands",
+      "framework": "fastapi"
+    },
+    "app-2": {
+      "root": "app",
+      "framework": "vite"
+    },
+    "desktop": {
+      "root": "desktop",
+      "framework": "vite"
+    },
+    "src-tauri": {
+      "root": "desktop/src-tauri",
+      "runtime": "rust"
+    },
+    "server": {
+      "root": "server",
+      "framework": "hono"
+    },
+    "supervisor": {
+      "root": "supervisor",
+      "framework": "hono"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/dashboard/(.*)",
+      "destination": {
+        "service": "app-2"
+      }
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "server"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "app"
+      }
+    }
   ]
 }
+```
